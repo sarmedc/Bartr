@@ -14,6 +14,7 @@
 		8216A2A71E01234500622E43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2A51E01234500622E43 /* LaunchScreen.storyboard */; };
 		8216A2AF1E0123A000622E43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2AE1E0123A000622E43 /* GoogleService-Info.plist */; };
 		821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1EF61EB01B18005F6BF0 /* Constants.swift */; };
+		821F1EFD1EB0433C005F6BF0 /* MyListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1EFC1EB0433C005F6BF0 /* MyListVC.swift */; };
 		ACD5E1EF56A9B9C61FC6A130 /* Pods_Bartr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF75CA350275BBE09E4D8AA /* Pods_Bartr.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		8216A2A81E01234500622E43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8216A2AE1E0123A000622E43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		821F1EF61EB01B18005F6BF0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		821F1EFC1EB0433C005F6BF0 /* MyListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				8216A29E1E01234500622E43 /* SigninVC.swift */,
+				821F1EFC1EB0433C005F6BF0 /* MyListVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -156,7 +159,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Sarmed Chaudhry";
 				TargetAttributes = {
 					8216A2981E01234500622E43 = {
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821F1EFD1EB0433C005F6BF0 /* MyListVC.swift in Sources */,
 				8216A29F1E01234500622E43 /* SigninVC.swift in Sources */,
 				8216A29D1E01234500622E43 /* AppDelegate.swift in Sources */,
 				821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */,
@@ -292,8 +296,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -337,8 +343,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -357,6 +365,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -365,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 488B48BD324F1764491A3957 /* Pods-Bartr.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Bartr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -378,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00E125B88087019F0E41E66F /* Pods-Bartr.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Bartr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

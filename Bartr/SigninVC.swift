@@ -21,7 +21,7 @@ class SigninVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let _ = KeychainWrapper.defaultKeychainWrapper.string(forKey: KEY_UID){
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
             print("TOOP: ID found in keychain")
             performSegue(withIdentifier: "goToMyList", sender: nil)
         }
@@ -70,10 +70,10 @@ class SigninVC: UIViewController {
     
     func completeSignIn(id: String) {
         //DataService.ds.createFirbaseDBUser(uid: id, userData: userData)
-        let keychainResult = KeychainWrapper.setString(id, forKey: KEY_UID)
-        //let keychainResult = KeychainWrapper.defaultKeychainWrapper.set(id, forKey: KEY_UID)
+        //let keychainResult = KeychainWrapper.setString(id, forKey: KEY_UID)
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TOOP: Data saved to keychain \(keychainResult)")
-        performSegue(withIdentifier: "goToFeed", sender: nil)
+        performSegue(withIdentifier: "goToMyList", sender: nil)
     }
     
     
