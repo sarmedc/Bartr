@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8216A29D1E01234500622E43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8216A29C1E01234500622E43 /* AppDelegate.swift */; };
-		8216A29F1E01234500622E43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8216A29E1E01234500622E43 /* ViewController.swift */; };
+		8216A29F1E01234500622E43 /* SigninVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8216A29E1E01234500622E43 /* SigninVC.swift */; };
 		8216A2A21E01234500622E43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2A01E01234500622E43 /* Main.storyboard */; };
 		8216A2A41E01234500622E43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2A31E01234500622E43 /* Assets.xcassets */; };
 		8216A2A71E01234500622E43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2A51E01234500622E43 /* LaunchScreen.storyboard */; };
 		8216A2AF1E0123A000622E43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8216A2AE1E0123A000622E43 /* GoogleService-Info.plist */; };
+		821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1EF61EB01B18005F6BF0 /* Constants.swift */; };
 		ACD5E1EF56A9B9C61FC6A130 /* Pods_Bartr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF75CA350275BBE09E4D8AA /* Pods_Bartr.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,12 +23,13 @@
 		5DF75CA350275BBE09E4D8AA /* Pods_Bartr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bartr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8216A2991E01234500622E43 /* Bartr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bartr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8216A29C1E01234500622E43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8216A29E1E01234500622E43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8216A29E1E01234500622E43 /* SigninVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninVC.swift; sourceTree = "<group>"; };
 		8216A2A11E01234500622E43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8216A2A31E01234500622E43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8216A2A61E01234500622E43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8216A2A81E01234500622E43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8216A2AE1E0123A000622E43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		821F1EF61EB01B18005F6BF0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +65,11 @@
 		8216A29B1E01234500622E43 /* Bartr */ = {
 			isa = PBXGroup;
 			children = (
+				826D226F1EAEF8500057BBA7 /* Util */,
+				826D226C1EAEF7E00057BBA7 /* Model */,
+				826D226D1EAEF7E90057BBA7 /* View */,
+				826D226E1EAEF7EE0057BBA7 /* Controller */,
 				8216A29C1E01234500622E43 /* AppDelegate.swift */,
-				8216A29E1E01234500622E43 /* ViewController.swift */,
 				8216A2A01E01234500622E43 /* Main.storyboard */,
 				8216A2A31E01234500622E43 /* Assets.xcassets */,
 				8216A2A51E01234500622E43 /* LaunchScreen.storyboard */,
@@ -72,6 +77,36 @@
 				8216A2AE1E0123A000622E43 /* GoogleService-Info.plist */,
 			);
 			path = Bartr;
+			sourceTree = "<group>";
+		};
+		826D226C1EAEF7E00057BBA7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		826D226D1EAEF7E90057BBA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		826D226E1EAEF7EE0057BBA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8216A29E1E01234500622E43 /* SigninVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		826D226F1EAEF8500057BBA7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				821F1EF61EB01B18005F6BF0 /* Constants.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		91DC64CA21F2F15A4C822919 /* Frameworks */ = {
@@ -215,8 +250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8216A29F1E01234500622E43 /* ViewController.swift in Sources */,
+				8216A29F1E01234500622E43 /* SigninVC.swift in Sources */,
 				8216A29D1E01234500622E43 /* AppDelegate.swift in Sources */,
+				821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
