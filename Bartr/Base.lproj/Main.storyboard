@@ -276,6 +276,9 @@
                                     <constraint firstAttribute="width" constant="74" id="sIG-mR-5dw"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="addIcon"/>
+                                <connections>
+                                    <action selector="addPopupTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="VGv-Bz-bjx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
@@ -291,21 +294,91 @@
                             <constraint firstItem="qLY-Or-V9S" firstAttribute="centerX" secondItem="PKM-c8-o7R" secondAttribute="centerX" id="VYe-57-iRE"/>
                             <constraint firstItem="qLY-Or-V9S" firstAttribute="leading" secondItem="PKM-c8-o7R" secondAttribute="leadingMargin" constant="134" id="Vu1-AJ-f5A"/>
                             <constraint firstItem="wV3-Gb-LUb" firstAttribute="leading" secondItem="PKM-c8-o7R" secondAttribute="leading" id="nQR-CL-mgi"/>
-                            <constraint firstItem="wV3-Gb-LUb" firstAttribute="top" secondItem="qLY-Or-V9S" secondAttribute="bottom" constant="8" id="nxk-le-hMV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addItemView" destination="nm5-GF-Dtv" id="gCN-0A-vKC"/>
+                        <outlet property="imageAdd" destination="urc-3O-WSS" id="TKD-WZ-6Z4"/>
+                        <outlet property="myListView" destination="PKM-c8-o7R" id="Csk-gH-Ptj"/>
                         <outlet property="tableView" destination="wV3-Gb-LUb" id="vdc-FP-K5V"/>
                         <segue destination="fnC-I6-P5F" kind="modal" identifier="goToSignIn" id="9Jc-L9-Ucb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBF-mB-ay0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="nm5-GF-Dtv">
+                    <rect key="frame" x="0.0" y="0.0" width="355" height="465"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add an Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pj9-8d-CmQ">
+                            <rect key="frame" x="14" y="13" width="327" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHo-tc-bCJ">
+                            <rect key="frame" x="229" y="208" width="106" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add a description..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ald-Uk-ZVr">
+                            <rect key="frame" x="20" y="258" width="315" height="101"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKU-jY-hnB">
+                            <rect key="frame" x="49" y="416" width="110" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="0.1641202108" blue="0.14897913569999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="CANCEL">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelPopupTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="DRJ-PT-ku1"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jtL-x0-Rri">
+                            <rect key="frame" x="20" y="208" width="190" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9W-Zp-ptU">
+                            <rect key="frame" x="193" y="416" width="110" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.52598436940000004" green="1" blue="0.13326112600000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="ADD">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="urc-3O-WSS">
+                            <rect key="frame" x="105" y="42" width="145" height="133"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="FnF-Dn-Swo" appends="YES" id="OW9-vV-ITf"/>
+                            </connections>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.9225391699664669" green="0.94285236552437168" blue="0.96175881410256414" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <tapGestureRecognizer id="FnF-Dn-Swo">
+                    <connections>
+                        <action selector="addImageTapped:" destination="uVe-au-NQ4" id="IQp-mk-A50"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="105.5" y="393.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="addIcon" width="50" height="50"/>
+        <image name="addImageIcon" width="128" height="128"/>
         <image name="deleteIcon" width="64" height="64"/>
         <image name="editIcon" width="64" height="64"/>
         <image name="logoutIcon" width="50" height="50"/>
