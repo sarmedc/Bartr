@@ -156,7 +156,7 @@
                                         </constraints>
                                         <state key="normal" image="logoutIcon"/>
                                         <connections>
-                                            <action selector="signOutTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="KGf-uK-ilK"/>
+                                            <action selector="signOutTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="pV4-us-yVP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -194,14 +194,14 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpQ-6e-aJj">
-                                                            <rect key="frame" x="208" y="37" width="143" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpQ-6e-aJj">
+                                                            <rect key="frame" x="224" y="37" width="127" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pGE-7T-RL7">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pGE-7T-RL7">
                                                             <rect key="frame" x="208" y="66" width="143" height="127"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -209,6 +209,13 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GM0-P5-033">
+                                                            <rect key="frame" x="208" y="37" width="13" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -299,6 +306,9 @@
                     <connections>
                         <outlet property="addItemView" destination="nm5-GF-Dtv" id="gCN-0A-vKC"/>
                         <outlet property="imageAdd" destination="urc-3O-WSS" id="TKD-WZ-6Z4"/>
+                        <outlet property="itemDescriptionTF" destination="Ald-Uk-ZVr" id="JKa-H6-sud"/>
+                        <outlet property="itemNameTF" destination="jtL-x0-Rri" id="tgq-7l-eSa"/>
+                        <outlet property="itemPriceTF" destination="hHo-tc-bCJ" id="JPP-fz-vx2"/>
                         <outlet property="myListView" destination="PKM-c8-o7R" id="Csk-gH-Ptj"/>
                         <outlet property="tableView" destination="wV3-Gb-LUb" id="vdc-FP-K5V"/>
                         <segue destination="fnC-I6-P5F" kind="modal" identifier="goToSignIn" id="9Jc-L9-Ucb"/>
@@ -317,13 +327,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHo-tc-bCJ">
-                            <rect key="frame" x="229" y="208" width="106" height="30"/>
+                            <rect key="frame" x="239" y="208" width="96" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add a description..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ald-Uk-ZVr">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ald-Uk-ZVr">
                             <rect key="frame" x="20" y="258" width="315" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,7 +352,7 @@
                             </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jtL-x0-Rri">
-                            <rect key="frame" x="20" y="208" width="190" height="30"/>
+                            <rect key="frame" x="20" y="208" width="184" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -355,6 +365,9 @@
                             <state key="normal" title="ADD">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="addItemTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="bPq-6T-usa"/>
+                            </connections>
                         </button>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="urc-3O-WSS">
                             <rect key="frame" x="105" y="42" width="145" height="133"/>
@@ -364,6 +377,13 @@
                                 <outletCollection property="gestureRecognizers" destination="FnF-Dn-Swo" appends="YES" id="OW9-vV-ITf"/>
                             </connections>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pI0-oQ-p0L">
+                            <rect key="frame" x="227" y="208" width="15" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.9225391699664669" green="0.94285236552437168" blue="0.96175881410256414" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
