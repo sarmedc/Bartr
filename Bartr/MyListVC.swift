@@ -24,6 +24,11 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var imageSelected = false
     
+    var currItemUnderUser: FIRDatabaseReference!
+    var currentItem: FIRDatabaseReference!
+    
+    static var sharedInstance: MyListVC?
+    
 //    let currUserItems = DataService.ds.REF_CURRENT_USER.child("items")
     
     
@@ -35,10 +40,10 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
-    var itemCell: ItemCell!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MyListVC.sharedInstance = self;
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -233,7 +238,8 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         firebasePost.setValue(newitem)
         
         //add item to the list of users items under current user
-        let currItemUnderUser = DataService.ds.REF_CURRENT_USER.child("items").child(firebasePost.key)
+        currItemUnderUser = DataService.ds.REF_CURRENT_USER.child("items").child(firebasePost.key)
+        currentItem = DataService.ds.REF_ITEMS.child(firebasePost.key)
         currItemUnderUser.setValue(true)
         
         itemNameTF.text = ""
@@ -245,6 +251,21 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.items = []
     }
     
+    func reloadItems(){
+        print("TOOP: Fckin reload")
+        self.items = []
+        self.tableView.reloadData()
+    }
+    
+//    @IBAction func deleteBtnTapped(_ sender: Any) {
+//        currItemUnderUser.removeValue()
+//        currentItem.removeValue()
+//        self.items = []
+//
+//        
+//    }
+    
+    
     @IBAction func signOutTapped(_ sender: Any) {
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("TOOP: ID removed from keychain \(keychainResult)")
@@ -252,13 +273,4 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         performSegue(withIdentifier: "goToSignIn", sender: nil)
     }
     
-    
-    
-//    @IBAction func itemPopUpTapped(_ sender: Any) {
-//        let addItemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addItemPopUp") as! PopUpViewController
-//        self.addChildViewController(addItemVC)
-//        addItemVC.view.frame = self.view.frame
-//        self.view.addSubview(addItemVC)
-//        addItemVC.didMoveToParentViewController(self)
-//    }
 }

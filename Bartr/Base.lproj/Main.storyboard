@@ -183,7 +183,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prC-Ho-aqo">
                                                     <rect key="frame" x="12" y="8" width="351" height="213"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ps4" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-yR-Syl">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-yR-Syl">
                                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -219,8 +219,8 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PFA-DU-Oqr">
-                                                    <rect key="frame" x="8" y="221" width="359" height="64"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PFA-DU-Oqr">
+                                                    <rect key="frame" x="12" y="221" width="351" height="64"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="xNI-zV-7c0">
                                                             <rect key="frame" x="8" y="0.0" width="343" height="64"/>
@@ -236,6 +236,9 @@
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swe-my-OrQ">
                                                                     <rect key="frame" x="274" y="0.0" width="69" height="64"/>
                                                                     <state key="normal" image="deleteIcon"/>
+                                                                    <connections>
+                                                                        <action selector="deleteBtnTapped:" destination="rgG-az-jI3" eventType="touchUpInside" id="15D-SW-2pa"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -404,7 +407,6 @@
         <image name="logoutIcon" width="50" height="50"/>
         <image name="menuIcon" width="48" height="48"/>
         <image name="offerIcon" width="50" height="50"/>
-        <image name="ps4" width="900" height="844"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

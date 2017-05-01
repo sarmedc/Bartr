@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+protocol ItemCellDelegate: class {
+    func reloadItems()
+}
+
 class ItemCell: UITableViewCell {
     
     @IBOutlet weak var itemImage: UIImageView!
@@ -19,8 +23,11 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var offerBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
     
+    weak var delegate: ItemCellDelegate?
+    
     var item: Item!
     var currUserItems: FIRDatabaseReference!
+    var currItem: FIRDatabaseReference!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +41,7 @@ class ItemCell: UITableViewCell {
         self.itemDescription.text = item.description
         
         currUserItems = DataService.ds.REF_CURRENT_USER.child("items").child(item.itemKey)
+        currItem = DataService.ds.REF_ITEMS.child(item.itemKey)
         
         if image != nil{
             self.itemImage.image = image
@@ -54,4 +62,12 @@ class ItemCell: UITableViewCell {
             })
         }
     }
+    
+    @IBAction func deleteBtnTapped(_ sender: Any) {
+        currUserItems.removeValue()
+        currItem.removeValue()
+                
+        MyListVC.sharedInstance?.reloadItems()
+        
+    }    
 }
