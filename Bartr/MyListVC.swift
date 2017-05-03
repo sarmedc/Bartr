@@ -16,16 +16,26 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBOutlet var myListView: UIView!
     @IBOutlet var addItemView: UIView!
+    @IBOutlet var editItemView: UIView!
     
     @IBOutlet weak var imageAdd: UIImageView!
     @IBOutlet weak var itemNameTF: UITextField!
     @IBOutlet weak var itemPriceTF: UITextField!
     @IBOutlet weak var itemDescriptionTF: UITextView!
     
+    @IBOutlet weak var imageEdit: UIImageView!
+    @IBOutlet weak var editNameTF: UITextField!
+    @IBOutlet weak var editPriceTF: UITextField!
+    @IBOutlet weak var editDescriptionTF: UITextView!
+    
+    
     var imageSelected = false
     
     var currItemUnderUser: FIRDatabaseReference!
     var currentItem: FIRDatabaseReference!
+    var itemKey: String!
+    var imageUID: String!
+    var isAddImage: Bool!
     
     static var sharedInstance: MyListVC?
     
@@ -138,6 +148,32 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
     
+    func animateInEdit(){
+        self.view.addSubview(editItemView)
+        editItemView.center = self.view.center
+        
+        editItemView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        editItemView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4){
+            //            self.visualEffectView.effect = self.effect
+            self.editItemView.alpha = 1
+            self.editItemView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func animateOutEdit(){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.editItemView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.editItemView.alpha = 0
+            
+            //            self.visualEffectView.effect = nil
+            
+        }) { (success: Bool) in
+            self.editItemView.removeFromSuperview()
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let invalidCharacters = CharacterSet(charactersIn: "0123456789.").inverted
         return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
@@ -160,7 +196,11 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            imageAdd.image = image
+            if isAddImage == true {
+                imageAdd.image = image
+            } else {
+                imageEdit.image = image
+            }
             imageSelected = true
         } else {
             print("TOOP: A valid image was not selected")
@@ -171,9 +211,16 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     
     @IBAction func addImageTapped(_ sender: Any) {
+        isAddImage = true
         present(imagePicker, animated: true, completion: nil)
         
     }
+    
+    @IBAction func editImageTapped(_ sender: Any) {
+        isAddImage = false
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     @IBAction func addPopupTapped(_ sender: Any) {
         animateIn()
@@ -182,6 +229,11 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     @IBAction func cancelPopupTapped(_ sender: Any) {
         animateOut()
     }
+    
+    @IBAction func cancelEditPopupTapped(_ sender: Any) {
+        animateOutEdit()
+    }
+    
     
     @IBAction func addItemTapped(_ sender: Any) {
         guard let name = itemNameTF.text, name != "" else{
@@ -216,7 +268,7 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                     print("TOOP: Successfully uploaded image to Firebase storage")
                     let downloadURL = metadata?.downloadURL()?.absoluteString
                     if let url = downloadURL {
-                        self.postItemToFirebase(imageURL: url)
+                        self.postItemToFirebase(imageURL: url, imageUID: imgUid)
                         self.animateOut()
                     }
                 }
@@ -224,13 +276,75 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
     
-    func postItemToFirebase(imageURL: String){            
+    func viewEdit(snap: FIRDataSnapshot){
+        animateInEdit()
+
+        if let itemDict = snap.value as? Dictionary<String, AnyObject> {
+            print("TOOP: \(itemDict)")
+            itemKey = snap.key
+            imageUID = itemDict["imageUID"] as! String!
+            
+            let ref = FIRStorage.storage().reference(forURL: itemDict["imageURL"] as! String)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("TOOP: Unable to download image from Firebase")
+                } else {
+                    print("TOOP: Image downloaded from Firebase")
+                    if let imageData = data{
+                        if let img = UIImage(data: imageData){
+                            self.imageEdit.image = img
+                        }
+                    }
+                }
+            })
+            
+            editNameTF.text = itemDict["name"] as! String?
+            editPriceTF.text = "\(itemDict["price"]!)"
+            editDescriptionTF.text = itemDict["description"] as! String!
+
+        }
+        
+        
+    }
+    
+    @IBAction func editBtnUpdate(_ sender: Any) {
+        let itemRef = DataService.ds.REF_ITEMS.child(itemKey)
+        
+        if let imgData = UIImageJPEGRepresentation(imageEdit.image!, 0.2) {
+            let imgUid = imageUID
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            DataService.ds.REF_ITEM_IMAGES.child(imgUid!).put(imgData, metadata: metaData) { (metadata, error) in
+                if error != nil{
+                    print("TOOP: Unable to upload image to Firebase strorage")
+                } else {
+                    print("TOOP: Successfully uploaded image to Firebase storage")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        itemRef.updateChildValues(["name": self.editNameTF.text as AnyObject,
+                                                   "price": Double(self.editPriceTF.text!) as AnyObject,
+                                                   "description": self.editDescriptionTF.text as AnyObject,
+                                                   "imageURL": url,
+                                                   "imageUID": imgUid!])
+                    }
+                }
+            }
+        }
+        
+        self.items = []
+        animateOutEdit()
+    }
+    
+    
+    func postItemToFirebase(imageURL: String, imageUID: String){
         
         let newitem: Dictionary<String, AnyObject> = [
             "name": itemNameTF.text as AnyObject,
             "price": Double(itemPriceTF.text!) as AnyObject,
             "description": itemDescriptionTF.text as AnyObject,
             "imageURL": imageURL as AnyObject,
+            "imageUID": imageUID as AnyObject,
             "user": DataService.ds.REF_CURRENT_USER.key as AnyObject
         ]
         
@@ -252,18 +366,9 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func reloadItems(){
-        print("TOOP: Fckin reload")
         self.items = []
         self.tableView.reloadData()
     }
-    
-//    @IBAction func deleteBtnTapped(_ sender: Any) {
-//        currItemUnderUser.removeValue()
-//        currentItem.removeValue()
-//        self.items = []
-//
-//        
-//    }
     
     
     @IBAction func signOutTapped(_ sender: Any) {

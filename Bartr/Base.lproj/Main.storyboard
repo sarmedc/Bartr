@@ -228,6 +228,9 @@
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHD-MZ-YXR">
                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                                     <state key="normal" image="editIcon"/>
+                                                                    <connections>
+                                                                        <action selector="editButtonTapped:" destination="rgG-az-jI3" eventType="touchUpInside" id="JiN-7R-iXT"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehn-GN-S5M">
                                                                     <rect key="frame" x="144" y="0.0" width="50" height="64"/>
@@ -308,7 +311,12 @@
                     </view>
                     <connections>
                         <outlet property="addItemView" destination="nm5-GF-Dtv" id="gCN-0A-vKC"/>
+                        <outlet property="editDescriptionTF" destination="UEj-dI-Cxv" id="aQ1-e5-JxZ"/>
+                        <outlet property="editItemView" destination="1Nc-my-h9a" id="kQc-9S-UO0"/>
+                        <outlet property="editNameTF" destination="cvh-4I-Fc2" id="dT6-R8-gzx"/>
+                        <outlet property="editPriceTF" destination="DUS-po-0CR" id="IZc-hv-xbg"/>
                         <outlet property="imageAdd" destination="urc-3O-WSS" id="TKD-WZ-6Z4"/>
+                        <outlet property="imageEdit" destination="s78-jy-sgH" id="qKH-4H-OkG"/>
                         <outlet property="itemDescriptionTF" destination="Ald-Uk-ZVr" id="JKa-H6-sud"/>
                         <outlet property="itemNameTF" destination="jtL-x0-Rri" id="tgq-7l-eSa"/>
                         <outlet property="itemPriceTF" destination="hHo-tc-bCJ" id="JPP-fz-vx2"/>
@@ -388,11 +396,88 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.9225391699664669" green="0.94285236552437168" blue="0.96175881410256414" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.94117647058823528" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="1Nc-my-h9a">
+                    <rect key="frame" x="0.0" y="0.0" width="355" height="465"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit an Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pks-LE-AUo">
+                            <rect key="frame" x="14" y="13" width="327" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DUS-po-0CR">
+                            <rect key="frame" x="239" y="208" width="96" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UEj-dI-Cxv">
+                            <rect key="frame" x="20" y="258" width="315" height="101"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o88-1C-pmk">
+                            <rect key="frame" x="49" y="416" width="110" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="0.1641202108" blue="0.14897913569999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="CANCEL">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelEditPopupTapped:" destination="uVe-au-NQ4" eventType="touchUpInside" id="0FM-Ny-qsz"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cvh-4I-Fc2">
+                            <rect key="frame" x="20" y="208" width="184" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVG-Nz-8CL">
+                            <rect key="frame" x="193" y="416" width="110" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.52598436940000004" green="1" blue="0.13326112600000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="EDIT">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="editBtnUpdate:" destination="uVe-au-NQ4" eventType="touchUpInside" id="Xv4-91-hce"/>
+                            </connections>
+                        </button>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="s78-jy-sgH">
+                            <rect key="frame" x="105" y="42" width="145" height="133"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="BpZ-IW-WK5" appends="YES" id="xZn-rj-NnP"/>
+                            </connections>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-Xg-xEr">
+                            <rect key="frame" x="227" y="208" width="15" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.94117647058823528" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <tapGestureRecognizer id="FnF-Dn-Swo">
                     <connections>
                         <action selector="addImageTapped:" destination="uVe-au-NQ4" id="IQp-mk-A50"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BpZ-IW-WK5">
+                    <connections>
+                        <action selector="editImageTapped:" destination="uVe-au-NQ4" id="kjb-S1-XmK"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

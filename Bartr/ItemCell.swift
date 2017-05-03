@@ -28,6 +28,8 @@ class ItemCell: UITableViewCell {
     var item: Item!
     var currUserItems: FIRDatabaseReference!
     var currItem: FIRDatabaseReference!
+    var currImage: FIRStorageReference!
+    var imageStorage: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,9 +41,11 @@ class ItemCell: UITableViewCell {
         self.itemName.text = item.name
         self.itemPrice.text = "\(item.price)"
         self.itemDescription.text = item.description
+        self.imageStorage = item.imageUID
         
         currUserItems = DataService.ds.REF_CURRENT_USER.child("items").child(item.itemKey)
         currItem = DataService.ds.REF_ITEMS.child(item.itemKey)
+        currImage = DataService.ds.REF_ITEM_IMAGES
         
         if image != nil{
             self.itemImage.image = image
@@ -63,11 +67,36 @@ class ItemCell: UITableViewCell {
         }
     }
     
+    @IBAction func editButtonTapped(_ sender: Any) {
+        //print("TOOP: \(currItem)")
+        DataService.ds.REF_ITEMS.observe(.value, with: {(snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot{
+                    print("SNAP \(snap)")
+                    if snap.key == self.currItem.key {
+                        MyListVC.sharedInstance?.viewEdit(snap: snap)
+                    }
+                }
+            }
+        })
+        
+    }
+    
+    
     @IBAction func deleteBtnTapped(_ sender: Any) {
         currUserItems.removeValue()
         currItem.removeValue()
+        print(imageStorage)
+        let imageLoc = DataService.ds.REF_ITEMS_LOC + imageStorage
+        FIRStorage.storage().reference(forURL: imageLoc).delete{ (error) in
+            if error != nil {
+                // error
+            } else {
+                // success
+            }
+        }
+        
                 
         MyListVC.sharedInstance?.reloadItems()
-        
-    }    
+    }
 }
