@@ -49,6 +49,7 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var items = [Item]()
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var userID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,21 +77,26 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         itemDescriptionTF.text = "Add a description"
         itemDescriptionTF.textColor = UIColor.lightGray
         
+        userID = (FIRAuth.auth()?.currentUser?.uid)!
         
         DataService.ds.REF_ITEMS.observe(.value, with: {(snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot{
                     print("SNAP \(snap)")
                     if let itemDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let item = Item(itemKey: key, itemData: itemDict)
-                        self.items.append(item)
+                        if itemDict["user"] as? String == self.userID! {
+                            let key = snap.key
+                            let item = Item(itemKey: key, itemData: itemDict)
+                            self.items.append(item)
+                        }
                     }
                 }
             }
             
             self.tableView.reloadData()
         })
+        
+        print("TOOP: Current user ID is" + userID)
         
     }
     

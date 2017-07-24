@@ -21,9 +21,11 @@ class DataService {
     private var _REF_ITEMS = DB_BASE.child("items")
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_ITEMS_LOC = "gs://bartr-2ea2c.appspot.com/item-pics/"
+    private var _REF_PP_LOC = "gs://bartr-2ea2c.appspot.com/profile-pics/"
     
     // Storage References
     private var _REF_ITEM_IMAGES = STORAGE_BASE.child("item-pics")
+    private var _REF_USER_IMAGES = STORAGE_BASE.child("user-pics")
     
     var REF_BASE: FIRDatabaseReference{
         return _REF_BASE
@@ -41,6 +43,10 @@ class DataService {
         return _REF_ITEMS_LOC
     }
     
+    var REF_PP_LOC: String {
+        return _REF_PP_LOC
+    }
+    
     var REF_CURRENT_USER: FIRDatabaseReference{
         let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
         let user = REF_USERS.child(uid!)
@@ -49,6 +55,10 @@ class DataService {
     
     var REF_ITEM_IMAGES: FIRStorageReference{
         return _REF_ITEM_IMAGES
+    }
+    
+    var REF_USER_IMAGES: FIRStorageReference{
+        return _REF_USER_IMAGES
     }
     
     func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>){

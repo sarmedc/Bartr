@@ -86,13 +86,13 @@ class ItemCell: UITableViewCell {
     @IBAction func deleteBtnTapped(_ sender: Any) {
         currUserItems.removeValue()
         currItem.removeValue()
-        print(imageStorage)
+        //print(imageStorage)
         let imageLoc = DataService.ds.REF_ITEMS_LOC + imageStorage
         FIRStorage.storage().reference(forURL: imageLoc).delete{ (error) in
             if error != nil {
-                // error
+                print("TOOP: Something went wrong while removing image")
             } else {
-                // success
+                print("TOOP: Succeccfully removed image from storage")
             }
         }
         
