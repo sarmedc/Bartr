@@ -28,6 +28,7 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var editPriceTF: UITextField!
     @IBOutlet weak var editDescriptionTF: UITextView!
     
+    @IBOutlet weak var navDrawerBtn: UIBarButtonItem!
     
     var imageSelected = false
     
@@ -77,7 +78,13 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         itemDescriptionTF.text = "Add a description"
         itemDescriptionTF.textColor = UIColor.lightGray
         
+        navDrawerBtn.target = self.revealViewController()
+        navDrawerBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
         userID = (FIRAuth.auth()?.currentUser?.uid)!
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: nil, action: nil)
         
         DataService.ds.REF_ITEMS.observe(.value, with: {(snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -96,7 +103,7 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.tableView.reloadData()
         })
         
-        print("TOOP: Current user ID is" + userID)
+        print("TOOP: Current user ID is " + userID)
         
     }
     

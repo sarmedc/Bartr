@@ -48,7 +48,7 @@ class SigninVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
             print("TOOP: ID found in keychain")
-            performSegue(withIdentifier: "goToMyList", sender: nil)
+            performSegue(withIdentifier: "goToLogIn", sender: nil)
         }
     }
     
@@ -217,7 +217,7 @@ class SigninVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TOOP: Data saved to keychain \(keychainResult)")
-        performSegue(withIdentifier: "goToMyList", sender: nil)
+        performSegue(withIdentifier: "goToLogIn", sender: nil)
     }
     
     
