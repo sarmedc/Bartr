@@ -10,13 +10,13 @@ import UIKit
 
 class NavDrawerTVC: UITableViewController {
     
-    
     @IBOutlet weak var menuTable: UITableView!
     
     var menu = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
         
         let menuItems = ["Header","My List", "Offers", "Messages", "Settings"]
         
@@ -53,6 +53,23 @@ class NavDrawerTVC: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row == 0{
+//            return 140
+//        }
+//        else{
+//            return self.tableView.rowHeight
+//        }
+//    }
 
     /*
     // Override to support conditional editing of the table view.
