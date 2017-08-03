@@ -330,6 +330,9 @@
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehn-GN-S5M">
                                                                     <rect key="frame" x="144" y="0.0" width="50" height="64"/>
                                                                     <state key="normal" image="offerIcon"/>
+                                                                    <connections>
+                                                                        <action selector="offerButtonTapped:" destination="rgG-az-jI3" eventType="touchUpInside" id="97O-QL-Q4W"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swe-my-OrQ">
                                                                     <rect key="frame" x="274" y="0.0" width="69" height="64"/>
@@ -427,6 +430,7 @@
                         <outlet property="navDrawerBtn" destination="KQc-rm-No9" id="QQR-uO-4YT"/>
                         <outlet property="tableView" destination="wV3-Gb-LUb" id="vdc-FP-K5V"/>
                         <segue destination="fnC-I6-P5F" kind="modal" identifier="goToSignIn" id="9Jc-L9-Ucb"/>
+                        <segue destination="sLP-np-LyO" kind="push" identifier="goToOffer" id="sej-11-DqK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBF-mB-ay0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -587,6 +591,82 @@
             </objects>
             <point key="canvasLocation" x="1396" y="421"/>
         </scene>
+        <!--OffersVC-->
+        <scene sceneID="47r-wv-eob">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sLP-np-LyO" customClass="OffersVC" customModule="Bartr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L5Q-1U-H3j"/>
+                        <viewControllerLayoutGuide type="bottom" id="iKw-Ma-Fvh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HLc-1M-9R8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ryf-tW-9Qs">
+                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="8qX-kK-9DK">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8qX-kK-9DK" id="q2f-Wf-dz6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IEE-Sp-Yjg">
+                                                    <rect key="frame" x="16" y="5" width="55" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bilbo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-oI-4fM">
+                                                    <rect key="frame" x="79" y="5" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uo8-yG-z7O">
+                                                    <rect key="frame" x="253" y="8" width="54" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Accept" image="rejectIcon"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usV-Mu-J1X">
+                                                    <rect key="frame" x="307" y="8" width="60" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Reject" image="acceptIcon"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$34.56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlx-Zz-fzj">
+                                                    <rect key="frame" x="79" y="26" width="63" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHD-HA-cGi">
+                                <rect key="frame" x="116" y="90" width="142" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5NM-0e-V5z"/>
+                    <connections>
+                        <outlet property="itemNameLabel" destination="LHD-HA-cGi" id="Ueh-cX-ecp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6w9-oB-y6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1912.5" y="420.5"/>
+        </scene>
         <!--Nav DrawerTVC-->
         <scene sceneID="mbW-tB-sZM">
             <objects>
@@ -604,7 +684,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="addIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VT2-y5-BPy">
-                                            <rect key="frame" x="17" y="11" width="58" height="55"/>
+                                            <rect key="frame" x="17" y="11" width="55" height="55"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Nombre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0t-wS-wUc">
                                             <rect key="frame" x="83" y="45" width="118" height="21"/>
@@ -664,7 +744,7 @@
                                             <rect key="frame" x="27" y="2" width="38" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsM-hW-hQ0">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Browse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsM-hW-hQ0">
                                             <rect key="frame" x="73" y="11" width="85" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -741,10 +821,10 @@
             </objects>
             <point key="canvasLocation" x="173.5" y="-683.5"/>
         </scene>
-        <!--Offers-->
+        <!--Browse-->
         <scene sceneID="K6Q-yW-PXt">
             <objects>
-                <viewController id="NKD-r7-dPh" customClass="OffersVC" customModule="Bartr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NKD-r7-dPh" customClass="BrowseVC" customModule="Bartr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VhM-VR-s3b"/>
                         <viewControllerLayoutGuide type="bottom" id="JbI-I0-Gbw"/>
@@ -754,7 +834,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Offers" id="cZF-fw-Hi7">
+                    <navigationItem key="navigationItem" title="Browse" id="cZF-fw-Hi7">
                         <barButtonItem key="leftBarButtonItem" image="menuIcon" id="Rbc-Sk-inL"/>
                         <barButtonItem key="rightBarButtonItem" image="logoutIcon" id="UTq-cp-4wV"/>
                     </navigationItem>
@@ -765,7 +845,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKD-e9-CpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-1133"/>
+            <point key="canvasLocation" x="1380.5" y="-1133.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="485-nv-0Kd">
@@ -913,6 +993,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="acceptIcon" width="48" height="48"/>
         <image name="addIcon" width="50" height="50"/>
         <image name="addImageIcon" width="128" height="128"/>
         <image name="deleteIcon" width="64" height="64"/>
@@ -922,6 +1003,7 @@
         <image name="menuIcon" width="48" height="48"/>
         <image name="messageIcon" width="48" height="48"/>
         <image name="offerIcon" width="50" height="50"/>
+        <image name="rejectIcon" width="48" height="48"/>
         <image name="settingsIcon" width="64" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

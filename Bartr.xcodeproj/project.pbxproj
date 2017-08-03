@@ -19,6 +19,8 @@
 		8218E6951F29BD4900BE58F5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8218E6941F29BD4900BE58F5 /* SWRevealViewController.m */; };
 		8218E6971F2AC60100BE58F5 /* OffersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218E6961F2AC60100BE58F5 /* OffersVC.swift */; };
 		8218E6991F2AC7E400BE58F5 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218E6981F2AC7E400BE58F5 /* MessagesVC.swift */; };
+		8218E69B1F2F07E700BE58F5 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218E69A1F2F07E700BE58F5 /* Shared.swift */; };
+		8218E69D1F326A7000BE58F5 /* BrowseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218E69C1F326A7000BE58F5 /* BrowseVC.swift */; };
 		821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1EF61EB01B18005F6BF0 /* Constants.swift */; };
 		821F1EFD1EB0433C005F6BF0 /* MyListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1EFC1EB0433C005F6BF0 /* MyListVC.swift */; };
 		821F1F011EB16CF3005F6BF0 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F1F001EB16CF3005F6BF0 /* ItemCell.swift */; };
@@ -47,6 +49,8 @@
 		8218E6941F29BD4900BE58F5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8218E6961F2AC60100BE58F5 /* OffersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersVC.swift; sourceTree = "<group>"; };
 		8218E6981F2AC7E400BE58F5 /* MessagesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
+		8218E69A1F2F07E700BE58F5 /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		8218E69C1F326A7000BE58F5 /* BrowseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseVC.swift; sourceTree = "<group>"; };
 		821F1EF61EB01B18005F6BF0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		821F1EFC1EB0433C005F6BF0 /* MyListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyListVC.swift; sourceTree = "<group>"; };
 		821F1F001EB16CF3005F6BF0 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				821F1F051EB26B60005F6BF0 /* Item.swift */,
+				8218E69A1F2F07E700BE58F5 /* Shared.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				8218E6921F29BD4900BE58F5 /* Bartr-Bridging-Header.h */,
 				8218E6961F2AC60100BE58F5 /* OffersVC.swift */,
 				8218E6981F2AC7E400BE58F5 /* MessagesVC.swift */,
+				8218E69C1F326A7000BE58F5 /* BrowseVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8218E69B1F2F07E700BE58F5 /* Shared.swift in Sources */,
 				821F1EFD1EB0433C005F6BF0 /* MyListVC.swift in Sources */,
 				8218E68D1F28625900BE58F5 /* menuCell.swift in Sources */,
 				8216A29F1E01234500622E43 /* SigninVC.swift in Sources */,
@@ -304,6 +311,7 @@
 				821F1EF71EB01B18005F6BF0 /* Constants.swift in Sources */,
 				8218E6951F29BD4900BE58F5 /* SWRevealViewController.m in Sources */,
 				821F1F011EB16CF3005F6BF0 /* ItemCell.swift in Sources */,
+				8218E69D1F326A7000BE58F5 /* BrowseVC.swift in Sources */,
 				8218E68F1F29B39700BE58F5 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

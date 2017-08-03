@@ -39,6 +39,7 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var isAddImage: Bool!
     
     static var sharedInstance: MyListVC?
+    var currItem: String!
     
 //    let currUserItems = DataService.ds.REF_CURRENT_USER.child("items")
     
@@ -361,6 +362,8 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             "user": DataService.ds.REF_CURRENT_USER.key as AnyObject
         ]
         
+        currItem = itemNameTF.text
+        
         let firebasePost = DataService.ds.REF_ITEMS.childByAutoId()
         firebasePost.setValue(newitem)
         
@@ -383,6 +386,19 @@ class MyListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.tableView.reloadData()
     }
     
+    func goToOffer(itemName: String){
+        performSegue(withIdentifier: "goToOffer", sender: itemName)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToOffer" {
+            if let destination = segue.destination as? OffersVC{
+                //print("TOOP: aey \(sender)")
+                destination.item = sender as? String
+            }
+        }
+    }
     
     @IBAction func signOutTapped(_ sender: Any) {
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)

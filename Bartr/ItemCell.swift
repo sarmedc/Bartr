@@ -13,7 +13,7 @@ protocol ItemCellDelegate: class {
     func reloadItems()
 }
 
-class ItemCell: UITableViewCell {
+class ItemCell: UITableViewCell  {
     
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemName: UILabel!
@@ -29,6 +29,7 @@ class ItemCell: UITableViewCell {
     var currUserItems: FIRDatabaseReference!
     var currItem: FIRDatabaseReference!
     var currImage: FIRStorageReference!
+    var currItemName: String!
     var imageStorage: String!
     
     override func awakeFromNib() {
@@ -46,6 +47,7 @@ class ItemCell: UITableViewCell {
         currUserItems = DataService.ds.REF_CURRENT_USER.child("items").child(item.itemKey)
         currItem = DataService.ds.REF_ITEMS.child(item.itemKey)
         currImage = DataService.ds.REF_ITEM_IMAGES
+        currItemName = item.name
         
         if image != nil{
             self.itemImage.image = image
@@ -81,6 +83,22 @@ class ItemCell: UITableViewCell {
         })
         
     }
+    
+    
+    @IBAction func offerButtonTapped(_ sender: Any) {
+//        Shared.shared.strVal = itemName.text'
+        let itemRef = currItem.child("name")
+        
+        itemRef.observeSingleEvent(of: .value, with: { snapshot in
+            let name = snapshot.value as? String
+           //print("TOOP: aey \(name!)")
+            MyListVC.sharedInstance?.goToOffer(itemName: name!)
+        })
+        //print("TOOP: in itemcell \(currItem.child("name").value(forKey: "name"))")
+        //MyListVC.sharedInstance?.goToOffer(itemName: self.itemName.text!)
+    }
+    
+    
     
     
     @IBAction func deleteBtnTapped(_ sender: Any) {
