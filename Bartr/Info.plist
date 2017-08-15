@@ -38,5 +38,9 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to photos is required to post image</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Regions needs to always be able to access your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Access to location is required when searching for nearby users</string>
 </dict>
 </plist>

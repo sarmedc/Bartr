@@ -18,7 +18,7 @@ class NavDrawerTVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         
-        let menuItems = ["Header","My List", "Offers", "Messages", "Settings"]
+        let menuItems = ["Header","My List", "Browse", "Messages", "Settings"]
         
         for i in 0 ..< menuItems.count{
             menu.append(menuItems[i])

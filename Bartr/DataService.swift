@@ -20,6 +20,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_ITEMS = DB_BASE.child("items")
     private var _REF_USERS = DB_BASE.child("users")
+    private var _REF_LOCATIONS = DB_BASE.child("locations")
     private var _REF_ITEMS_LOC = "gs://bartr-2ea2c.appspot.com/item-pics/"
     private var _REF_PP_LOC = "gs://bartr-2ea2c.appspot.com/profile-pics/"
     
@@ -37,6 +38,10 @@ class DataService {
     
     var REF_USERS: FIRDatabaseReference{
         return _REF_USERS
+    }
+    
+    var REF_LOCATIONS: FIRDatabaseReference{
+        return _REF_LOCATIONS
     }
     
     var REF_ITEMS_LOC: String {

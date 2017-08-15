@@ -29,6 +29,7 @@ class ItemCell: UITableViewCell  {
     var currUserItems: FIRDatabaseReference!
     var currItem: FIRDatabaseReference!
     var currImage: FIRStorageReference!
+    var currUserItem: FIRStorageReference!
     var currItemName: String!
     var imageStorage: String!
     
@@ -45,7 +46,7 @@ class ItemCell: UITableViewCell  {
         self.imageStorage = item.imageUID
         
         currUserItems = DataService.ds.REF_CURRENT_USER.child("items").child(item.itemKey)
-        currItem = DataService.ds.REF_ITEMS.child(item.itemKey)
+        currItem = DataService.ds.REF_ITEMS.child(item.itemKey)        
         currImage = DataService.ds.REF_ITEM_IMAGES
         currItemName = item.name
         
@@ -104,6 +105,7 @@ class ItemCell: UITableViewCell  {
     @IBAction func deleteBtnTapped(_ sender: Any) {
         currUserItems.removeValue()
         currItem.removeValue()
+        
         //print(imageStorage)
         let imageLoc = DataService.ds.REF_ITEMS_LOC + imageStorage
         FIRStorage.storage().reference(forURL: imageLoc).delete{ (error) in
